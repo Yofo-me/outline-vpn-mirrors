@@ -96,7 +96,7 @@ An Outline server runs instances of Shadowsocks proxies and provides an API used
 |**OS**|**Download**|
 |:---:|:---:|
 |**Windows 7.0+**|[<img src="./statics/pngs/windows.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.exe)|
-|**Most of Linux Release**|[<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage)|
+|**Most of Linux Releases**|[<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage)|
 |**macOS 10.9+**|[<img src="./statics/pngs/macos.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.dmg)|
 ## #3 Get Outline Client
 
@@ -112,10 +112,10 @@ The client's user interface is implemented in [Polymer](https://www.polymer-proj
 |**OS**|**Download**|
 |:---:|:---:|
 |**Windows 7.0+**|[<img src="./statics/pngs/windows.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.exe)|
-|**Most of Linux Release**|[​<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.AppImage)|
+|**Most of Linux Releases**|[​<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.AppImage)|
 |**macOS 10.11+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356178125)|
 |**iOS 9.0+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356177741)|
-|**Android 5.0+**|[​<img src="./statics/pngs/android.png" width="200" height="50">](https://github.com/Jigsaw-Code/outline-releases/blob/master/client/Outline.apk)**/**[<img src="./statics/pngs/googleplay.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
+|**Android 5.0+**|[​<img src="./statics/pngs/android.png" width="200" height="50">](https://github.com/Jigsaw-Code/outline-releases/blob/master/client/Outline.apk)**or**[<img src="./statics/pngs/googleplay.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
 |**Chrome OS 64.0+**|[<img src="./statics/pngs/chromeos.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
 
 ## #4 How to install Outline On Ubuntu Server 19.04 and Ubuntu Desktop 19.04?
@@ -329,7 +329,7 @@ Name[zh_CN]=大纲管理器
 GenericName=Outline VPN - Outline Manager Client
 Comment=The Outline Manager application creates and manages Outline servers, powered by Shadowsocks.
 Exec=/opt/Outline/outline-manager/Outline-Manager.AppImage %f
-Icon=/opt/Outline/outline-manager/outline-manager.png
+Icon=/opt/Outline/outline-manager/outline-manager-client.png
 Terminal=false
 Type=Application
 Categories=Internet;
@@ -347,7 +347,7 @@ Name[zh_CN]=大纲
 GenericName=Outline VPN - Outline Client
 Comment=The Outline Client is a cross-platform VPN or proxy client for Windows, macOS, iOS, Android, and Chrome OS.
 Exec=/opt/Outline/outline/Outline-Client.AppImage %f
-Icon=/opt/Outline/outline/outline.png
+Icon=/opt/Outline/outline/outline-client.png
 Terminal=false
 Type=Application
 Categories=Internet;
