@@ -1,4 +1,4 @@
-<img src="./statics/outline-background.svg" align="center">
+<img src="./statics/outline-background.png" align="center">
 
 # Outline VPN
 
@@ -79,7 +79,7 @@ Outline is powered by [Shadowsocks](https://shadowsocks.org) and is still an ear
 
 ## #2 Get Outline Manager Client
 
-<img src="./statics/outline-manager-client.svg" align="center">
+<img src="./statics/outline-manager-client.png" align="center">
 
 ### Description
 
@@ -96,7 +96,7 @@ An Outline server runs instances of Shadowsocks proxies and provides an API used
 |**macOS 10.9+**|[<img src="./statics/download-svgs/macos.svg" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.dmg)|
 ## #3 Get Outline Client
 
-<img src="./statics/outline-client.svg" align="center">
+<img src="./statics/outline-client.png" align="center">
 
 ### Description
 
@@ -289,7 +289,7 @@ Keep that information safe, as you’ll need it in the other steps. For now, rej
 First, download Linux AppImages for [Outline-Manager](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage) Client and [Outline](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.AppImage) Client by above steps **#2 Get Outline Manager Client** and **#3 Get Outline Client**. And then, download icons for the two clients: 
 
 ```bash
-$ sudo wget https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/statics/outline-manager-client.svg && sudo wget https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/statics/outline-client.svg
+$ sudo wget https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/statics/outline-manager-client.png && sudo wget https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/statics/outline-client.png
 ```
 
 #### Step2 Create specified directories
@@ -310,7 +310,7 @@ $ sudo mv Outline-Manager.AppImage Outline/outline-manager && sudo mv Outline-Cl
 ```
 Then, move the two icons to the same two directories you just created: 
 ```bash
-$ sudo mv outline-manager.svg Outline/outline-manager && sudo mv outline.svg Outline/outline
+$ sudo mv outline-manager.png Outline/outline-manager && sudo mv outline.png Outline/outline
 ```
 #### Step4 Touch and edit files for desktop launchers
 
@@ -325,7 +325,7 @@ Name[zh_CN]=大纲管理器
 GenericName=Outline VPN - Outline Manager Client
 Comment=The Outline Manager application creates and manages Outline servers, powered by Shadowsocks.
 Exec=/opt/Outline/outline-manager/Outline-Manager.AppImage %f
-Icon=/opt/Outline/outline-manager/outline-manager.svg
+Icon=/opt/Outline/outline-manager/outline-manager.png
 Terminal=false
 Type=Application
 Categories=Internet;
@@ -343,7 +343,7 @@ Name[zh_CN]=大纲
 GenericName=Outline VPN - Outline Client
 Comment=The Outline Client is a cross-platform VPN or proxy client for Windows, macOS, iOS, Android, and Chrome OS.
 Exec=/opt/Outline/outline/Outline-Client.AppImage %f
-Icon=/opt/Outline/outline/outline.svg
+Icon=/opt/Outline/outline/outline.png
 Terminal=false
 Type=Application
 Categories=Internet;
