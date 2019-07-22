@@ -95,9 +95,9 @@ An Outline server runs instances of Shadowsocks proxies and provides an API used
 
 |**OS**|**Download**|
 |:---:|:---:|
-|**Windows 7.0+**|[<img src="./statics/download-pngs/windows.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.exe)|
-|**Most of Linux Release**|[<img src="./statics/download-pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage)|
-|**macOS 10.9+**|[<img src="./statics/download-pngs/macos.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.dmg)|
+|**Windows 7.0+**|[<img src="./statics/pngs/windows.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.exe)|
+|**Most of Linux Release**|[<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage)|
+|**macOS 10.9+**|[<img src="./statics/pngs/macos.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.dmg)|
 ## #3 Get Outline Client
 
 <img src="./statics/outline-client.png" height="80">
@@ -111,12 +111,12 @@ The client's user interface is implemented in [Polymer](https://www.polymer-proj
 ### Download
 |**OS**|**Download**|
 |:---:|:---:|
-|**Windows 7.0+**|[<img src="./statics/download-svgs/windows.svg" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.exe)|
-|**Most of Linux Release**|[​<img src="./statics/download-svgs/linux.svg" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.AppImage)|
-|**macOS 10.11+**|[<img src="./statics/download-svgs/appstore.svg" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356178125)|
-|**iOS 9.0+**|[<img src="./statics/download-svgs/appstore.svg" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356177741)|
-|**Android 5.0+**|[​<img src="./statics/download-svgs/android.svg" width="200" height="50">](https://github.com/Jigsaw-Code/outline-releases/blob/master/client/Outline.apk)**/**[<img src="./statics/download-svgs/googleplay.svg" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
-|**Chrome OS 64.0+**|[<img src="./statics/download-svgs/chromeos.svg" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
+|**Windows 7.0+**|[<img src="./statics/pngs/windows.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.exe)|
+|**Most of Linux Release**|[​<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.AppImage)|
+|**macOS 10.11+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356178125)|
+|**iOS 9.0+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356177741)|
+|**Android 5.0+**|[​<img src="./statics/pngs/android.png" width="200" height="50">](https://github.com/Jigsaw-Code/outline-releases/blob/master/client/Outline.apk)**/**[<img src="./statics/pngs/googleplay.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
+|**Chrome OS 64.0+**|[<img src="./statics/pngs/chromeos.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
 
 ## #4 How to install Outline On Ubuntu Server 19.04 and Ubuntu Desktop 19.04?
 
