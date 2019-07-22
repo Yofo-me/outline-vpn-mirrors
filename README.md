@@ -1,4 +1,4 @@
-<img src="./statics/outline-background.png" align="center">
+<img src="./statics/outline-background.png">
 
 # Outline VPN
 
@@ -72,14 +72,18 @@ Outline is powered by [Shadowsocks](https://shadowsocks.org) and is still an ear
 ### 4 - Help
 
 💬[Help Center](https://support.getoutline.org)
+
 :octocat:[GitHub](https://github.com/Jigsaw-Code/?q=outline)
+
 🧲[Terms of Service](https://s3.amazonaws.com/outline-vpn/static_downloads/Outline-Terms-of-Service.html)
+
 [🧬Data Collection Policy](https://support.getoutline.org/s/article/Data-collection)
+
 [⚠️Privacy Policy](https://www.google.com/policies/privacy)
 
 ## #2 Get Outline Manager Client
 
-<img src="./statics/outline-manager-client.png" align="center">
+<img src="./statics/outline-manager-client.png" height="80">
 
 ### Description
 
@@ -91,12 +95,12 @@ An Outline server runs instances of Shadowsocks proxies and provides an API used
 
 |**OS**|**Download**|
 |:---:|:---:|
-|**Windows 7.0+**|[<img src="./statics/download-svgs/windows.svg" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.exe)|
-|**Most of Linux Release**|[<img src="./statics/download-svgs/linux.svg" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage)|
-|**macOS 10.9+**|[<img src="./statics/download-svgs/macos.svg" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.dmg)|
+|**Windows 7.0+**|[<img src="./statics/download-pngs/windows.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.exe)|
+|**Most of Linux Release**|[<img src="./statics/download-pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage)|
+|**macOS 10.9+**|[<img src="./statics/download-pngs/macos.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.dmg)|
 ## #3 Get Outline Client
 
-<img src="./statics/outline-client.png" align="center">
+<img src="./statics/outline-client.png" height="80">
 
 ### Description
 
