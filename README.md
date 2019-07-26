@@ -115,7 +115,7 @@ The client's user interface is implemented in [Polymer](https://www.polymer-proj
 |**Most of Linux Releases**|[​<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.AppImage)|
 |**macOS 10.11+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356178125)|
 |**iOS 9.0+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356177741)|
-|**Android 5.0+**|[​<img src="./statics/pngs/android.png" width="200" height="50">](https://github.com/Jigsaw-Code/outline-releases/blob/master/client/Outline.apk)**or**[<img src="./statics/pngs/googleplay.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
+|**Android 5.0+**|[​<img src="./statics/pngs/android.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/Outline.apk)**or**[<img src="./statics/pngs/googleplay.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
 |**Chrome OS 64.0+**|[<img src="./statics/pngs/chromeos.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
 
 ## #4 How to install Outline On Ubuntu Server 19.04 and Ubuntu Desktop 19.04?
