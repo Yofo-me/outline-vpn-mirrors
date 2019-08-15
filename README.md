@@ -31,6 +31,7 @@
       - [Step6 Create soft links](#step6-create-soft-links)
       - [Step7 Set startup application preferences](#step7-set-startup-application-preferences)
    - [#5 One-click Shell Script](#5-one-click-shell-script)
+   - [#6Keywords](#6-keywords)
 
 ## #1 Introduction
 
@@ -392,3 +393,7 @@ At this point, you completely installed and configured all. Now, Let us reboot c
 ## #5 One-click Shell Script
 
 TODO
+
+## #6 Keywords
+
+`VPN`、`ShadowSocks`、`Proxy`、`GFW`、`GFW Proxy`、`One-click Script`、`Ubuntu`、`科学上网`、`爱国上网`、`自由上网`、`突破网络封锁`、`影梭`、`翻墙`、`扶墙`、`代理`、`破墙`、`国际新闻工作者`、`防火长城`、`功夫网`、`中国国家防火墙`、`一键脚本`
