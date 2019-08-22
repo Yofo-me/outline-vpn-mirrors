@@ -296,6 +296,47 @@ upgrade_ubuntu_version() {
 }
 
 # Check Ubuntu version
+count_03=1
+check_ubuntu_version() {
+    param=
+    case "${ubuntu_version}" in
+        19.04)
+            echo -e ${ubuntu_version_echo}
+            ;;
+        18.10)
+            echo -e ${ubuntu_version_echo}
+            ;;
+        18.04)
+            echo -e ${ubuntu_version_echo}
+            ;;
+        16.04)
+            echo -e ${ubuntu_version_echo}
+            ;;
+        *)
+            if [ "${count_03}" == 1 ]; then
+                echo -e "> ${Notice} Your Ubuntu Linux version is older, please reinstall the newer version like 19.04, 18.10, 18.04 LTS or 16.04 LTS and try again. (+)"
+                read -p "< ${read_echo_notice} Or do you upgrade to higher Ubuntu Linux version now? Press enter [y/N]: " param
+            else
+                read -p "< ${read_echo_notice} Do you certainly upgrade to higher Ubuntu Linux version now? Press enter [y/N]: " param
+            fi
+            ;;
+    esac
+
+    case ${param} in
+        Y|y|[Yy][Ee][Ss])
+            check_ssh_server_alive_status
+            upgrade_ubuntu_version
+            ;;
+        N|n|[Nn][Oo])
+            exit_information
+            ;;
+        *)
+            echo -e "> ${Error} Invalid input, please input a legal operation and continue... Done."
+            count_03=$[${count_03}+1]
+            check_ubuntu_version
+            ;;
+    esac
+}
 
 # Check if Outline Server is installed or not
 
