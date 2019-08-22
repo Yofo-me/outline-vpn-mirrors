@@ -22,7 +22,7 @@
 # OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 # Usage:
-#     shell> sudo bash -c "$(wget -qO- TODO)"
+#     shell> sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/scripts/outline-vpn-ubuntu-one-click-script.sh)"
 # OS restrictions:
 #     Only Ubuntu Linux 19.04, 18.04 LTS or 16.04 LTS can be supported!
 
@@ -751,7 +751,7 @@ option_between_26_and_27() {
 exit_information() {
     echo -e "> ${Okay} Now, you have exited the shell script."
     echo -e "> ${Okay} If you want to continue executing the script?"
-    echo -e "> ${Okay} Please copy this command: <sudo bash -c "$(wget -qO- TODO)"> and paste into Terminal. Enter to continue."
+    echo -e "> ${Okay} Please copy this command: <sudo bash -c \"\$(wget -qO- https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/scripts/outline-vpn-ubuntu-one-click-script.sh)\"> and paste into Terminal. Enter to continue... Done."
     exit 1
 }
 
