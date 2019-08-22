@@ -110,6 +110,29 @@ add_docker_ce_apt_repository() {
 }
 
 # Remove all Docker CE service
+remove_all_docker_ce() {
+    echo -e "> ${Okay} Docker CE service will be stopped immediately!"
+    sudo systemctl stop docker.service
+    echo -e "> ${Okay} Docker CE service has been stopped!"
+    echo -e "> ${Okay} Continuing... Done."
+    sleep 0.5s
+    sudo apt-get purge docker* runc containerd.io -y
+    sudo apt-get --purge autoremove docker* runc containerd.io -y
+    sudo apt-get autoclean
+    sudo groupdel docker
+
+    sudo find / \( -path "/sys" -o -path "/proc" -o -path "/media" -o -path "/mnt" -o -path "/home" \) -prune \
+    -o -name "*docker*" -print 2>/dev/null | \
+    sudo xargs rm -rf
+
+    if [ $(grep -c "https://download.docker.com/linux/ubuntu" /etc/apt/sources.list) ]; then
+        sudo sed -i '$d' /etc/apt/sources.list
+    fi
+
+    sudo apt-key del $(sudo apt-key list | grep -B 1 "docker" | sed -n '1p' | sed s/[[:space:]]//g)
+    sudo apt update -y
+    echo -e "> ${Okay} Docker CE service has been removed completely!"
+}
 
 # Install Docker CE service
 
