@@ -567,6 +567,23 @@ topic_information() {
 }
 
 # Common options for Ubuntu Linux Desktop and Server
+options_for_ubuntu_common() {
+    echo " |=> [01] Check release of Linux operating system. => 01 (Default)"
+    echo " |=> [02] Check physical architecture. => 02"
+    echo " |=> [03] Check Number of Bit about operating system. => 03"
+    echo " |=> [04] Check Memory total. => 04"
+    echo " |=> [05] Check SSH server alive status. => 05"
+    echo " |=> [06] Check Ubuntu version. => 06"
+    echo " |=> [07] Upgrade Ubuntu version. => 07"
+    echo " |=> [08] Check if Docker CE service is installed or not. => 08"
+    echo " |=> [09] Check Docker CE service status. => 09"
+    echo " |=> [10] Remove all older Docker CE service. => 10"
+    echo " |=> [11] Install higher version Docker CE service. => 11"
+    echo " |=> [12] Update Docker CE service. => 12"
+    echo " |=> [13] Check Outline Server service is installed or not. => 13"
+    echo " |=> [14] Install or Update Outline Server service. => 14"
+    echo " |=> [15] Remove all Outline Server service. => 15"
+}
 
 # Options only support Ubuntu Desktop
 
