@@ -748,6 +748,12 @@ option_between_26_and_27() {
 }
 
 # Exit Information to all
+exit_information() {
+    echo -e "> ${Okay} Now, you have exited the shell script."
+    echo -e "> ${Okay} If you want to continue executing the script?"
+    echo -e "> ${Okay} Please copy this command: <sudo bash -c "$(wget -qO- TODO)"> and paste into Terminal. Enter to continue."
+    exit 1
+}
 
 # Start entrance menu
 count_07=1
