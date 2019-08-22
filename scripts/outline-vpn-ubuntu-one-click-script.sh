@@ -371,6 +371,25 @@ install_or_update_outline_server() {
 }
 
 # Remove all Outline Server service
+remove_all_outline_server() {
+    echo -e "> ${Okay} Will remove all Outline Server service... Done."
+    sudo kill $(ps -ef | grep "outline-ss-server" | awk '{print $2}')
+    echo -e "> ${Okay} Has killed all Outline Server background processes... Done."
+    docker_container_name=$(sudo docker ps | grep "outline" | awk '{print $NF}')
+    sudo docker stop ${docker_container_name}
+    echo -e "> ${Okay} Has stopped Outline Server docker container... Done."
+    sudo docker rm ${docker_container_name}
+    echo -e "> ${Okay} Has removed Outline Server docker container... Done."
+    sudo docker rmi $(sudo docker image ls | grep "outline" | awk '{print $1":"$2}')
+    echo -e "> ${Okay} Has removed Outline Server docker image... Done."
+    sudo find / -path "/opt/outline" -prune \
+    -o -name "outline-ss-server" \
+    -print 2>/dev/null \
+    | xargs rm -rf
+    sudo rm -rf /opt/outline/{persisted-state/,access.txt*}
+    sudo rm $HOME/.install_or_update_outline_server.log
+    echo -e "> ${Okay} Good! Remove all Outline Server service successfully."
+}
 
 # Check if Outline Manager Client and Outline Client are installed or not
 
