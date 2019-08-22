@@ -60,6 +60,21 @@ check_docker_ce_is_installed() {
 }
 
 # Checkt Docker CE service status
+check_docker_ce_service_status() {
+    if [[ "$(systemctl status docker.service --no-pager | awk '/Active/ {print $2,$3}')" == "active (running)" ]]; then
+        sudo systemctl status docker.service --no-pager
+        echo "> ${Okay} Well! Docker CE service is enable... Done."
+    else
+        echo -e "> ${Notice} Sorry! Docker CE service is disable... Done. (+)"
+        echo -e "> ${Okay} Continuing... Done."
+        sudo systemctl enable docker.service
+        echo -e "> ${Okay} Docker CE service has been set to boot from boot... Done."
+        sudo systemctl start docker.service
+        echo -e "> ${Okay} Docker CE service is starting... Done."
+        sleep 2s
+        check_docker_ce_service_status
+    fi
+}
 
 # Add an official Docker CE apt-repository software source
 
