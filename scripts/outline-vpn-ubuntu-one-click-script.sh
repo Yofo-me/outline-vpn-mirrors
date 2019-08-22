@@ -458,6 +458,45 @@ EOF
 }
 
 # Install Outline Client
+install_outline_client() {
+    cur_dir=$(pwd)
+    if [ ! -f "Outline-Client.AppImage" ]; then
+        sudo wget ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+    else
+        sudo wget -N -c ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+    fi
+
+    sudo chmod a+x Outline-Client.AppImage
+    mkdir -p outline/outline-client
+    sudo mv Outline-Client.AppImage ${cur_dir}/outline-client
+
+    seingshinlee_pre_url="https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/statics"
+
+    if [ ! -f "outline-client.png" ]; then
+        sudo wget ${seingshinlee_pre_url}/outline-client.png
+    fi
+
+    sudo mv outline-client.png ${cur_dir}/outline-client
+
+    cat >${cur_dir}/outline-client/outline-client.desktop <<-EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Outline
+GenericName=Outline VPN - Outline Client
+Comment=The Outline Client is a cross-platform VPN or proxy client for Windows, macOS, iOS, Android, and Chrome OS.
+Exec=/opt/outline/outline-client/Outline-Client.AppImage %f
+Icon=/opt/outline/outline-client/outline-client.png
+Terminal=false
+Type=Application
+Categories=Internet
+StartupNotify=true
+EOF
+
+    sudo rsync -a ${cur_dir}/ /opt/outline
+    sudo ln -sfn /opt/outline/outline-client/outline-client.desktop /usr/share/applications/outline-client.desktop
+    sudo ln -sfn /opt/outline/outline-client/outline-client.desktop $HOME/.config/autostart/outline-client.desktop
+    echo -e "> ${Okay} Install Outline Client successfully!"
+}
 
 # Update Outline Manager Client
 
