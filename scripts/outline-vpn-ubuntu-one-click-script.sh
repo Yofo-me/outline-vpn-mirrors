@@ -219,6 +219,44 @@ check_memory_total() {
 }
 
 # Check SSH server alive status
+count_01=1
+check_ssh_server_alive_status() {
+    param=
+    if [ "${count_01}" == 1 ]; then
+        echo -e "> ${Notice} Check if SSH is enabled to keep the server alive interval time and the max response count or not?"
+        echo -e "> ${Notice} if [y], your operating system upgrade will feedback progress information in real time."
+        echo -e "> ${Notice} if [N], your operating system upgrade is very likely to fail!"
+        read -p "< ${read_echo_notice} Do you continue? [y/N]: " param
+    else
+        read -p "< ${read_echo_notice} Do you continue again? [y/N]: " param
+    fi
+
+    case "${param}" in
+        Y|y|[Yy][Ee][Ss])
+            sshd_config_path="/etc/ssh/sshd_config"
+            if [ ! -f "${sshd_config_path}" ]; then
+                sudo apt-get --purge remove openssh-server -y
+                sudo apt-get autoremove
+                sudo apt-get clean
+                sudo apt-get install openssh-server -y
+            else
+                sudo sed -i '/ClientAliveInterval/a\\ClientAliveInterval 60' ${sshd_config_path}
+                sudo sed -i '/#ClientAliveInterval/d' ${sshd_config_path}
+                sudo sed -i '/ClientAliveCountMax/a\\ClientAliveCountMax 3' ${sshd_config_path}
+                sudo sed -i '/#ClientAliveCountMax/d' ${sshd_config_path}
+            fi
+            echo -e "> ${Okay} Modify the file \"/etc/ssh/sshd_config\" successfully!"
+            ;;
+        N|n|[Nn][Oo])
+            echo -e "> ${Notice} Without modifing SSH server alive status... Done. (+)"
+            ;;
+        *)
+            echo -e "> ${Error} Invalid input, please re-enter and try again... Done."
+            count_01=$[${count_01}+1]
+            check_docker_ce_service_status
+            ;;
+    esac
+}
 
 # Upgrade Ubuntu version
 
