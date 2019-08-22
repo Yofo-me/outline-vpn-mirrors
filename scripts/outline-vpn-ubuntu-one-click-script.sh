@@ -513,6 +513,18 @@ update_outline_manager_client() {
 }
 
 # Update Outline Client
+update_outline_client() {
+    sudo kill $(ps -ef | grep "outline-client" | awk '{print $2}')
+    if [ ! -f "Outline-Client.AppImage" ]; then
+        sudo wget ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+    else
+        sudo wget -N -c ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+    fi
+
+    sudo chmod a+x Outline-Client.AppImage
+    sudo rsync -a Outline-Client.AppImage /opt/outline/outline-client/outline-client
+    echo -e "> ${Okay} Update Outline Client successfully!"
+}
 
 # Remove Outline Manager Client
 
