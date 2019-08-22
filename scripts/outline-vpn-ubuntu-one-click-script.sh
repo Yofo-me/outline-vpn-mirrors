@@ -632,6 +632,13 @@ continue_start_menu_or_not() {
 }
 
 # Check all prerequisites
+check_all() {
+    check_phy_arch
+    check_bit
+    check_memory_total
+    check_ssh_server_alive_status
+    check_ubuntu_version
+}
 
 # One option for the 7th option in main case...in process control statement
 
