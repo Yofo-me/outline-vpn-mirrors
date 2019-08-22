@@ -710,6 +710,17 @@ option_11_or_12() {
 }
 
 # One option for the 26th option in main case...in process control statement
+option_26() {
+    check_docker_ce_is_installed
+    if [ "$(docker --version | awk -F "[ .]" '{print $3}')" -ge 19 ]; then
+        update_docker_ce
+    else
+        remove_all_docker_ce
+        install_docker_ce
+    fi
+    sleep 2s
+    check_docker_ce_service_status
+}
 
 # One option for the 27th option in main case...in process control statement
 
