@@ -392,6 +392,17 @@ remove_all_outline_server() {
 }
 
 # Check if Outline Manager Client and Outline Client are installed or not
+check_outline_clients_are_installed() {
+    if [ -d "/opt/outline/outline-manager-client" ] && [ -d "/opt/outline/outline-client" ]; then
+        echo -e "> ${Okay} Both of them are installed... Done."
+    elif [ -d "/opt/outline/outline-manager-client" ]; then
+        echo -e "> ${Okay} Only Outline Manager Client is installed... Done."
+    elif [ -d "/opt/outline/outline-client" ]; then
+        echo -e "> ${Okay} Only Outline Client is installed... Done."
+    else
+        echo -e "> ${Notice} Neither!"
+    fi
+}
 
 # Check Outline Manager Client and Outline Client status
 
