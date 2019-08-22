@@ -339,6 +339,14 @@ check_ubuntu_version() {
 }
 
 # Check if Outline Server is installed or not
+check_outline_server_is_installed() {
+    if [ -d "/opt/outline/persisted-state/outline-ss-server" ]; then
+        echo -e "> ${Okay} Outline Server is installed... Done."
+    else
+        echo -e "> ${Error} Outline Server isn't installed... Done."
+        exit_information
+    fi
+}
 
 # Install or update Outline Server service of Ubuntu Server by Outline official One-click shell script
 
