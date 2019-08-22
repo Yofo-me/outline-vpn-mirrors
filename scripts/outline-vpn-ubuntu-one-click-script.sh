@@ -614,6 +614,22 @@ options_for_ubuntu_server() {
 }
 
 # If continue to use start_menu function or not
+continue_start_menu_or_not() {
+    param=
+    read -p "< ${read_echo_notice} Do you want to continue using One-click shell script? [y/N]: " param
+    case ${param} in
+        Y|y|[Yy][Ee][Ss])
+            start_menu
+            ;;
+        N|n|[Nn][Oo])
+
+            ;;
+        *)
+            echo -e "> ${Error} Invalid input, please input a legal operation and continue... Done."
+            continue_start_menu_or_not
+            ;;
+    esac
+}
 
 # Check all prerequisites
 
