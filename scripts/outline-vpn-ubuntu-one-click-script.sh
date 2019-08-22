@@ -606,6 +606,12 @@ options_for_ubuntu_desktop() {
 }
 
 # Options only support Ubuntu Server
+options_for_ubuntu_server() {
+    options_for_ubuntu_common
+    echo " |=> [16] One-click install Docker CE and Outline Server. => 16"
+    echo " +=> [00] Exit the script. => 00"
+    read -p "< ${read_echo_notice} Please enter the number (00-16) to continue: " num
+}
 
 # If continue to use start_menu function or not
 
