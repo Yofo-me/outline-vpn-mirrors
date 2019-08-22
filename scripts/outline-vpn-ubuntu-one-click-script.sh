@@ -972,3 +972,5 @@ start_menu() {
     sleep 2s
     continue_start_menu_or_not
 }
+
+start_menu
