@@ -645,7 +645,7 @@ count_05=1
 option_07() {
     param=
     if [ "${ubuntu_version_prefix}" -le 14 ]; then
-        upgrade_ubuntu_version
+        upgrade_ubuntu_versiongit
     else
         if [ "${count_05}" == 1 ]; then
             echo -e "> ${Okay} Current Ubuntu Linux version is ${ubuntu_version}."
@@ -673,6 +673,41 @@ option_07() {
 }
 
 # One option for the 11th or the 12th option in main case...in process control statement
+count_06=1
+option_11_or_12=
+option_11_or_12() {
+    param=
+    check_docker_ce_is_installed
+    if [ -f "/usr/bin/docker" ] && [ "$(docker --version | awk -F "[ .]" '{print $3}')" -ge 19 ]; then
+        if [ "${count_06}" == 1 ]; then
+            echo -e "> ${Okay} The current version is higher version."
+            if [ "${option_11_or_12}" == "11" ]; then
+                echo -e "> ${Okay} No need to install Docker CE service!"
+            else [ "${option_11_or_12}" == "12" ]; then
+                echo -e "> ${Okay} No need to update Docker CE service!"
+            fi
+            read -p "< ${read_echo_notice} Also, you can update to the latest version, please enter [y/N] to continue: " param
+        else
+            read -p "< ${read_echo_notice} Please re-enter [y/N] to continue: " param
+        fi
+
+        case ${param} in
+            Y|y|[Yy][Ee][Ss])
+                update_docker_ce
+                ;;
+            N|n|[Nn][Oo])
+                exit_information
+                ;;
+            *)
+                echo -e "> ${Error} Invalid input, please re-enter a legal operation and try again! Done."
+                count_06=$[${count_06}+1]
+                option_11_or_12
+                ;;
+        esac
+    else
+        install_docker_ce
+    fi
+}
 
 # One option for the 26th option in main case...in process control statement
 
