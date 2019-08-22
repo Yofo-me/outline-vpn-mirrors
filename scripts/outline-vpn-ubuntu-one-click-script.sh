@@ -739,6 +739,13 @@ option_27() {
 }
 
 # One option for the common of the 26th and the 27th options in main case...in process control statement
+option_between_26_and_27() {
+    check_outline_server_is_installed
+    if [ -d "/opt/outline/persisted-state/outline-ss-server" ]; then
+        count_04=$[${count_04}+1]
+    fi
+    install_or_update_outline_server
+}
 
 # Exit Information to all
 
