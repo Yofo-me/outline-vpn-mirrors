@@ -25,3 +25,79 @@
 #     shell> sudo bash -c "$(wget -qO- TODO)"
 # OS restrictions:
 #     Only Ubuntu Linux 19.04, 18.04 LTS or 16.04 LTS can be supported!
+
+# Initialze ANSI colors
+
+# Check if Docker CE is installed or not
+
+# Checkt Docker CE service status
+
+# Add an official Docker CE apt-repository software source
+
+# Remove all Docker CE service
+
+# Install Docker CE service
+
+# Update Docker CE service
+
+# Check Linux operating system release
+
+# Check CPU physical architecture
+
+# Check number of Bit
+
+# Check memory total of operating system
+
+# Check SSH server alive status
+
+# Upgrade Ubuntu version
+
+# Check Ubuntu version
+
+# Check if Outline Server is installed or not
+
+# Install or update Outline Server service of Ubuntu Server by Outline official One-click shell script
+
+# Remove all Outline Server service
+
+# Check if Outline Manager Client and Outline Client are installed or not
+
+# Check Outline Manager Client and Outline Client status
+
+# Install Outline Manager Client
+
+# Install Outline Client
+
+# Update Outline Manager Client
+
+# Update Outline Client
+
+# Remove Outline Manager Client
+
+# Remove Outline Client
+
+# Topic information
+
+# Common options for Ubuntu Linux Desktop and Server
+
+# Options only support Ubuntu Desktop
+
+# Options only support Ubuntu Server
+
+# If continue to use start_menu function or not
+
+# Check all prerequisites
+
+# One option for the 7th option in main case...in process control statement
+
+# One option for the 11th or the 12th option in main case...in process control statement
+
+# One option for the 26th option in main case...in process control statement
+
+# One option for the 27th option in main case...in process control statement
+
+# One option for the common of the 26th and the 27th options in main case...in process control statement
+
+# Exit Information to all
+
+# Start entrance menu
