@@ -135,6 +135,27 @@ remove_all_docker_ce() {
 }
 
 # Install Docker CE service
+install_docker_ce() {
+    # Add some dependencies and an official Docker GPG key
+    echo -e "> ${Okay} Will add some dependencies and an official Docker GPG key... Done."
+    sudo apt update -y
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    echo -e "> ${Okay} Will add Docker CE official apt-repository software source... Done."
+    add_docker_ce_apt_repository
+
+    if [ "$(apt-key list | grep -c "docker")" == 1 ]; then
+        echo -e "> ${Okay} Add a GPG key successfully... Done."
+    else
+        echo -e "> ${Error} Failed to add a GPG key... Done. (+)"
+        exit_information
+    fi
+
+    echo -e "> ${Okay} Will execute installation of Docker CE... Done."
+    sudo apt install docker-ce -y
+    check_docker_ce_service_status
+}
 
 # Update Docker CE service
 
