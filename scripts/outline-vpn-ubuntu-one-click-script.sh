@@ -194,6 +194,18 @@ check_phy_arch() {
 }
 
 # Check number of Bit
+bit=
+check_bit() {
+    if [ "$(getconf WORD_BIT)" == "32" ] && [ "$(getconf LONG_BIT)" == "64" ]; then
+        bit=64
+        echo -e "> ${Okay} Your operating system is ${bit}-Bit, continuing... Done."
+    else
+        bit=32
+        echo ${bit}
+        echo -e "> ${Error} Your operating system is not 64-Bit, please reinstall an Ubuntu Linux 64-Bit and try again."
+        exit_information
+    fi
+}
 
 # Check memory total of operating system
 
