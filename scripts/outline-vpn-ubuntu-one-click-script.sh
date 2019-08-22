@@ -405,6 +405,17 @@ check_outline_clients_are_installed() {
 }
 
 # Check Outline Manager Client and Outline Client status
+check_outline_clients_are_enabled() {
+    if [ $(ps -e | grep -c "outline-manager") == 4 ] && [ $(ps -e | grep -c "outline-client") == 4 ]; then
+        echo -e "> ${Okay} Both of them are enabled... Done."
+    elif [ $(ps -e | grep -c "outline-manager") == 4 ]; then
+        echo -e "> ${Okay} Only Outline Manager Client is enabled... Done."
+    elif [ $(ps -e | grep -c "outline-client") == 4 ]; then
+        echo -e "> ${Okay} Only Outline Client is enabled... Done."
+    else
+        echo -e "> ${Notice} Neither!"
+    fi
+}
 
 # Install Outline Manager Client
 
