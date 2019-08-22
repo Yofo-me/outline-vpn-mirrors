@@ -32,6 +32,15 @@ ubuntu_version_echo="> ${Okay} Your Ubuntu Linux version is ${ubuntu_version}, i
 Jigsaw-Code_pre_url="https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master"
 
 # Initialze ANSI colors
+initializeANSI() {
+    prefix="\033"
+    red_foreground="${prefix}[31m"
+    green_foreground="${prefix}[32m"
+    yellow_foreground="${prefix}[33m"
+    reset="${prefix}[0m"
+}
+
+initializeANSI
 
 Okay="${green_foreground}[Okay]${reset}"
 Error="${red_foreground}[Error]${reset}"
