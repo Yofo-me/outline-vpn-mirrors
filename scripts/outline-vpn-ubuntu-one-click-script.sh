@@ -418,6 +418,44 @@ check_outline_clients_are_enabled() {
 }
 
 # Install Outline Manager Client
+install_outline_manager_client() {
+    cur_dir=$(pwd)
+    if [ ! -f "Outline-Manager.AppImage" ]; then
+        sudo wget ${Jigsaw-Code_pre_url}/manager/stable/Outline-Manager.AppImage
+    else
+        sudo wget -N -c ${Jigsaw-Code_pre_url}/manager/stable/Outline-Manager.AppImage
+    fi
+
+    sudo chmod a+x Outline-Manager.AppImage
+    mkdir -p outline/outline-manager-client
+    sudo mv Outline-Manager.AppImage ${cur_dir}/outline-manager-client
+
+    seingshinlee_pre_url="https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/statics"
+    if [ ! -f "outline-manager-client.png" ]; then
+        sudo wget ${seingshinlee_pre_url}/outline-manager-client.png
+    fi
+
+    sudo mv outline-manager-client.png ${cur_dir}/outline-manager-client
+
+    cat >${cur_dir}/outline-manager-client/outline-manager-client.desktop <<-EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Outline Manager
+GenericName=Outline VPN - Outline Manager Client
+Comment=The Outline Manager application creates and manages Outline servers, powered by Shadowsocks.
+Exec=/opt/outline/outline-manager-client/Outline-Manager.AppImage %f
+Icon=/opt/outline/outline-manager-client/outline-manager-client.png
+Terminal=false
+Type=Application
+Categories=Internet
+StartupNotify=true
+EOF
+
+    sudo rsync -a ${cur_dir}/ /opt/outline
+    sudo ln -sfn /opt/outline/outline-manager-client/outline-manager-client.desktop /usr/share/applications/outline-manager-client.desktop
+    sudo ln -sfn /opt/outline/outline-manager-client/outline-manager-client.desktop $HOME/.config/autostart/outline-manager-client.desktop
+    echo -e "> ${Okay} Install Outline Manager Client successfully!"
+}
 
 # Install Outline Client
 
