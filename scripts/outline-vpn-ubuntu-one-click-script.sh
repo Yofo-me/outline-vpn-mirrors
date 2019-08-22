@@ -641,6 +641,36 @@ check_all() {
 }
 
 # One option for the 7th option in main case...in process control statement
+count_05=1
+option_07() {
+    param=
+    if [ "${ubuntu_version_prefix}" -le 14 ]; then
+        upgrade_ubuntu_version
+    else
+        if [ "${count_05}" == 1 ]; then
+            echo -e "> ${Okay} Current Ubuntu Linux version is ${ubuntu_version}."
+            echo -e "> ${Okay} No need to upgrade Ubuntu Linux version!"
+            echo -e "> ${Okay} But, you can also try to upgrade it to the latest version!"
+            read -p "< ${read_echo_notice} Do you certainly execute upgrade operation? Please enter [y/N] to continue: " param
+        else
+            read -p "< ${read_echo_notice} Now, please re-enter [y/N] to continue: " param
+        fi
+
+        case "${param}" in
+            Y|y|[Yy][Ee][Oo])
+                upgrade_ubuntu_version
+                ;;
+            N|n|[Nn][Oo])
+                exit_information
+                ;;
+            *)
+                echo -e "> ${Error} Invalid input, please re-enter a legal operation and try again... Done."
+                count_05=$[${count_05}+1]
+                option_07
+                ;;
+        esac
+    fi
+}
 
 # One option for the 11th or the 12th option in main case...in process control statement
 
