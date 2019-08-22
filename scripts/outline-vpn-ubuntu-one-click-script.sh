@@ -51,6 +51,13 @@ read_echo_notice=$(echo -e "${Notice}")
 read_echo_error=$(echo -e "${Error}")
 
 # Check if Docker CE is installed or not
+check_docker_ce_is_installed() {
+    if [ -f "/usr/bin/docker" ]; then
+        echo -e "> ${Okay} Docker CE service is installed... Done."
+    else
+        echo -e "> ${Error} Docker CE service isn't installed... Done."
+    fi
+}
 
 # Checkt Docker CE service status
 
