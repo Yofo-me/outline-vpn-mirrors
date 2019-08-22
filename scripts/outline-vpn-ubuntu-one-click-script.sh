@@ -589,3 +589,219 @@ topic_information() {
 # Exit Information to all
 
 # Start entrance menu
+count_07=1
+start_menu() {
+    num=
+
+    if [ "${count_07}" == 1 ]; then
+        clear
+    fi
+
+    topic_information
+
+    if [ "${count_07}" == 1 ]; then
+        check_sys_release
+    fi
+
+    echo "[.]"
+    if [ "$(ps -e | grep -c X)" == 1 ] && [ "$(dpkg -l ubuntu-desktop | grep -c "desktop")" == 1 ]; then
+        options_for_ubuntu_desktop
+    else
+        options_for_ubuntu_server
+    fi
+
+    case "${num}" in
+        01)
+            check_sys_release
+            ;;
+        02)
+            check_phy_arch
+            ;;
+        03)
+            check_bit
+            ;;
+        04)
+            check_memory_total
+            ;;
+        05)
+            check_ssh_server_alive_status
+            ;;
+        06)
+            check_ubuntu_version
+            ;;
+        07)
+            option_07
+            ;;
+        08)
+            check_docker_ce_is_installed
+            ;;
+        09)
+            check_docker_ce_service_status
+            ;;
+        10)
+            check_docker_ce_is_installed
+            if [ -f "/usr/bin/docker" ]; then
+                remove_all_docker_ce
+            else
+                echo -e "> ${Okay} No need to remove Docker CE service!"
+            fi
+            ;;
+        11)
+            option_11_or_12="11"
+            option_11_or_12
+            ;;
+        12)
+            option_11_or_12="12"
+            option_11_or_12
+            ;;
+        13)
+            check_outline_server_is_installed
+            ;;
+        14)
+            if [ -d "/opt/outline/persisted-state/outline-ss-server" ]; then
+                count_04=$[${count_04}+1]
+            fi
+            install_or_update_outline_server
+            ;;
+        15)
+            check_outline_server_is_installed
+            if [ -d "/opt/outline/persisted-state/outline-ss-server" ]; then
+                remove_all_outline_server
+            else
+                echo -e "> ${Okay} Outline Server service is not exist!"
+                echo -e "> ${Okay} No need to remove Outline Server service!"
+            fi
+            ;;
+        16)
+            check_outline_clients_are_installed
+            ;;
+        17)
+            echo -e "> ${Okay} Install Outline Manager Client. => "
+            check_outline_clients_are_installed
+            if [ ! -d "/opt/outline/outline-manager-client" ]; then
+                install_outline_manager_client
+            else
+                echo -e "> ${Okay} Now, Outline Manager Client has existed!"
+                echo -e "> ${Okay} So, no need to install Outline Manager Client!"
+            fi
+            ;;
+        18)
+            echo -e "> ${Okay} Install Outline Client. => "
+            check_outline_clients_are_installed
+            if [ ! -d "/opt/outline/outline-client" ]; then
+                install_outline_client
+            else
+                echo -e "> ${Okay} Now, Outline Client has existed!"
+                echo -e "> ${Okay} So, no need to install Outline Client!"
+            fi
+            ;;
+        19)
+            echo -e "> ${Okay} Install Outline Clients. => "
+            check_outline_clients_are_installed
+            if [ ! -d "/opt/outline/outline-manager-client" ] && [ ! -d "/opt/outline/outline-client" ]; then
+                install_outline_manager_client
+                sleep 2s
+                install_outline_client
+            else
+                echo -e "> ${Okay} Now, Both of them has existed!"
+                echo -e "> ${Okay} So, no need to install Both of them!"
+            fi
+            ;;
+        20)
+            echo -e "> ${Okay} Update Outline Manager Client. => "
+            check_outline_clients_are_installed
+            if [ ! -d "/opt/outline/outline-manager-client" ]; then
+                install_outline_manager_client
+            else
+                update_outline_manager_client
+            fi
+            ;;
+        21)
+            echo -e "> ${Okay} Update Outline Client. => "
+            check_outline_clients_are_installed
+            if [ ! -d "/opt/outline/outline-client" ]; then
+                install_outline_client
+            else
+                update_outline_client
+            fi
+            ;;
+        22)
+            echo -e "> ${Okay} Update Outline Clients. => "
+            check_outline_clients_are_installed
+            if [ ! -d "/opt/outline/outline-manager-client" ] && [ ! -d "/opt/outline/outline-client" ]; then
+                install_outline_manager_client
+                sleep 2s
+                install_outline_client
+            else
+                update_outline_manager_client
+                sleep 2s
+                update_outline_client
+            fi
+            ;;
+        23)
+            echo -e "> ${Okay} Remove Outline Manager Client. => "
+            check_outline_clients_are_installed
+            if [ -d "/opt/outline/outline-manager-client" ]; then
+                remove_all_outline_manager_client
+            else
+                echo -e "> ${Okay} Outline Manager Client is not exist!"
+                echo -e "> ${Okay} No need to remove Outline Manager Client!"
+            fi
+            ;;
+        24)
+            echo -e "> ${Okay} Remove Outline Client. => "
+            check_outline_clients_are_installed
+            if [ -d "/opt/outline/outline-client" ]; then
+                remove_all_outline_client
+            else
+                echo -e "> ${Okay} Outline Client is not exist!"
+                echo -e "> ${Okay} No need to remove Outline Client!"
+            fi
+            ;;
+        25)
+            echo -e "> ${Okay} Remove Outline Clients. => "
+            check_outline_clients_are_installed
+            if [ -d "/opt/outline/outline-manager-client" ] && [ -d "/opt/outline/outline-client" ]; then
+                remove_all_outline_manager_client
+                sleep 2s
+                remove_all_outline_client
+            else
+                echo -e "> ${Okay} Outline Clients is not exist!"
+                echo -e "> ${Okay} No need to remove Outline Clients!"
+            fi
+            ;;
+        26)
+            check_all
+            option_26
+            option_between_26_and_27
+            ;;
+        27)
+            check_all
+            option_between_26_and_27
+            sleep 2s
+            option_27
+            ;;
+        28)
+            check_all
+            option_26
+            option_between_26_and_27
+            sleep 2s
+            option_27
+            ;;
+        00)
+            exit_information
+            ;;
+        *)
+            count_07=$[${count_07}+1]
+            if [ "$(ps -e | grep -c X)" == 1 ] && [ "$(dpkg -l ubuntu-desktop | grep -c "desktop")" == 1 ]; then
+                echo -e "< ${read_echo_error} An invalid number, please re-enter a legal and right number from (00-28)! Done. "
+            else
+                echo -e "< ${read_echo_error} An invalid number, please re-enter a legal and right number from (00-16)! Done. "
+            fi
+            sleep 2s
+            start_menu
+            ;;
+    esac
+    sleep 2s
+    continue_start_menu_or_not
+}
