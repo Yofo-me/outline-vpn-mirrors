@@ -77,6 +77,37 @@ check_docker_ce_service_status() {
 }
 
 # Add an official Docker CE apt-repository software source
+add_docker_ce_apt_repository() {
+    case "${ubuntu_version}" in
+        19.04)
+            sudo add-apt-repository \
+            "deb [arch=${phy_arch}] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) \
+            stable edge test"
+            ;;
+        18.10|18.04|16.04)
+            sudo add-apt-repository \
+            "deb [arch=${phy_arch}] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) \
+            stable"
+            ;;
+        *)
+            ;;
+    esac
+
+    apt-cache policy docker-ce
+
+    if [[ $(apt-cache policy docker-ce | sed -n '3p' | awk -F "[~-]" '{print $4}') != "ubuntu" ]]; then
+        echo -e "> ${Okay} Continuing... Done."
+    else
+        echo -e "> ${Notice} Re-add the official apt-repository software source of Docker CE... Done."
+        sleep 0.5s
+        add_docker_ce_apt_repository
+    fi
+    echo -e "> ${Okay} Add an apt-repository software source successfully... Done."
+
+    sudo apt update -y
+}
 
 # Remove all Docker CE service
 
