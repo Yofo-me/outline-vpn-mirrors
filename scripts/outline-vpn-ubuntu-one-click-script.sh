@@ -622,7 +622,7 @@ continue_start_menu_or_not() {
             start_menu
             ;;
         N|n|[Nn][Oo])
-
+            exit_information
             ;;
         *)
             echo -e "> ${Error} Invalid input, please input a legal operation and continue... Done."
