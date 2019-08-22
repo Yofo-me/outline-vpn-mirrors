@@ -26,7 +26,20 @@
 # OS restrictions:
 #     Only Ubuntu Linux 19.04, 18.04 LTS or 16.04 LTS can be supported!
 
+ubuntu_version=$(lsb_release --release | cut -f 2)
+ubuntu_version_prefix=$(echo ${ubuntu_version} | cut -c "1,2")
+ubuntu_version_echo="> ${Okay} Your Ubuntu Linux version is ${ubuntu_version}, it's ok and continue... Done."
+Jigsaw-Code_pre_url="https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master"
+
 # Initialze ANSI colors
+
+Okay="${green_foreground}[Okay]${reset}"
+Error="${red_foreground}[Error]${reset}"
+Notice="${yellow_foreground}[Notice]${reset}"
+
+read_echo_okay=$(echo -e "${Okay}")
+read_echo_notice=$(echo -e "${Notice}")
+read_echo_error=$(echo -e "${Error}")
 
 # Check if Docker CE is installed or not
 
