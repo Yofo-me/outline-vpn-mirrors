@@ -349,6 +349,26 @@ check_outline_server_is_installed() {
 }
 
 # Install or update Outline Server service of Ubuntu Server by Outline official One-click shell script
+count_04=1
+install_or_update_outline_server() {
+    if [ "${count_04}" == 1 ]; then
+        echo -e "> ${Okay} Will install Outline Server immediately... Done."
+    else
+        echo -e "> ${Okay} Will update Outline Server immediately... Done."
+    fi
+
+    sudo bash -c \
+    "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)" -y \
+    | tee $HOME/.install_or_update_outline_server.log
+
+    cat $HOME/.install_or_update_outline_server.log | awk '/apiUrl/ {print $0}' | sudo tee /opt/outline/access_apiUrl.txt
+
+    if [ "${count_04}" == 1 ]; then
+        echo -e "> ${Okay} Install Outline Server successfully... Done."
+    else
+        echo -e "> ${Okay} Update Outline Server successfully... Done."
+    fi
+}
 
 # Remove all Outline Server service
 
