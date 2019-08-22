@@ -1,6 +1,7 @@
 The MIT License (MIT)
 
 Copyright (C) 2019-present, Seingshin Lee <seingshinlee@gmail.com>
+
 All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
