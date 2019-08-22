@@ -723,6 +723,20 @@ option_26() {
 }
 
 # One option for the 27th option in main case...in process control statement
+option_27() {
+        check_outline_clients_are_installed
+        if [ -d "/opt/outline/outline-manager-client" ] && [ -d "/opt/outline/outline-client" ]; then
+            :
+        elif [ -d "/opt/outline/outline-manager-client" ]; then
+            install_outline_client
+        elif [ -d "/opt/outline/outline-client" ]; then
+            install_outline_manager_client
+        else
+            install_outline_manager_client
+            sleep 2s
+            install_outline_client
+        fi
+}
 
 # One option for the common of the 26th and the 27th options in main case...in process control statement
 
