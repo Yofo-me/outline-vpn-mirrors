@@ -527,6 +527,18 @@ update_outline_client() {
 }
 
 # Remove Outline Manager Client
+remove_all_outline_manager_client() {
+    sudo kill $(ps -ef | grep "outline-manager" | awk '{print $2}')
+    sudo rm -rf /opt/outline/outline-manager-client
+    sudo rm /usr/share/applications/outline-manager-client.desktop
+    rm $HOME/.config/autostart/outline-manager-client.desktop
+    sudo rm -rf Outline\ Manager\ Crashes/
+
+    sudo find / \( -path "/sys" -o -path "/proc" -o -path "/media" -o -path "/mnt" \) -prune \
+    -o -name "appimagekit-outline-manger*" -print 2>/dev/null \
+    | sudo xargs rm -rf
+    echo -e "> ${Okay} Remove all Outline Manager Client successfully!"
+}
 
 # Remove Outline Client
 
