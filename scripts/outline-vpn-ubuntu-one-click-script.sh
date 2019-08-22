@@ -177,6 +177,7 @@ check_sys_release() {
 }
 
 # Check CPU physical architecture
+phy_arch=$(arch)
 check_phy_arch() {
     if [[ "${phy_arch}" == "x86_64" ]]; then
         phy_arch=amd64
