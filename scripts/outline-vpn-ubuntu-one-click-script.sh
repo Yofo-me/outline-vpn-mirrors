@@ -259,6 +259,41 @@ check_ssh_server_alive_status() {
 }
 
 # Upgrade Ubuntu version
+count_02=1
+upgrade_ubuntu_version() {
+    param=
+    if [ "${count_02}" == 1 ]; then
+        read -p "< ${read_echo_okay} This upgrade process will take a long time, are you sure to continue? [y/N]: " param
+    else
+        read -p "< ${read_echo_okay} Do you certainly upgrade to higher Ubuntu Linux version again? [y/N]: " param
+    fi
+
+    case "${param}" in
+        Y|y|[Yy][Ee][Ss])
+            echo -e "> ${Okay} Starting to execut upgrade commands... Done."
+            echo -e "> ${Okay} Follow the prompts to perform the appropriate action!"
+            sleep 2s
+            sudo apt update -y
+            sudo apt upgrade -y
+            sudo apt dist-upgrade -y
+            sudo apt-get autoremove -y
+            sudo apt install update-manager-core -y
+            if [ $(grep -c "Prompt=tls" /etc/update-manager/release-upgrades) ]; then
+                sudo sed -i '$d' /etc/update-manager/release-upgrades
+                sudo sed -i '$a\Prompt=normal' /etc/update-manager/release-upgrades
+            fi
+            sudo do-release-upgrade -d
+            ;;
+        N|n|[Nn][Oo])
+            echo -e "> ${Okay} Stopped upgrade... Done."
+            ;;
+        *)
+            echo -e "> ${Error} Invalid input, please re-enter and try again... Done."
+            count_02=$[${count_02}+1]
+            upgrade_ubuntu_version
+            ;;
+    esac
+}
 
 # Check Ubuntu version
 
