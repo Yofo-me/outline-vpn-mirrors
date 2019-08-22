@@ -158,6 +158,12 @@ install_docker_ce() {
 }
 
 # Update Docker CE service
+update_docker_ce() {
+    echo -e "> ${Okay} Will update Docker CE... Done."
+    sudo apt update -y
+    sudo apt install docker-ce -y
+    echo -e "> ${Okay} Docker CE update successfully... Done."
+}
 
 # Check Linux operating system release
 
