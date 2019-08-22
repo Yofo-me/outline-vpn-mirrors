@@ -208,6 +208,15 @@ check_bit() {
 }
 
 # Check memory total of operating system
+check_memory_total() {
+    memory_total=$(($(grep MemTotal /proc/meminfo | awk '{print $2}') / 1024))
+    if [ "${memory_total}" -ge 512 ]; then
+        echo -e "> ${Okay} Your machine memory is ${memory_total}MB, it's okay, continuing... Done."
+    else
+        echo -e "> ${Error} Machine memory is less than 512MB, please adjust to the memory size and try again."
+        exit_information
+    fi
+}
 
 # Check SSH server alive status
 
