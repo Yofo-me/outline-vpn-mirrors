@@ -586,6 +586,24 @@ options_for_ubuntu_common() {
 }
 
 # Options only support Ubuntu Desktop
+options_for_ubuntu_desktop() {
+    options_for_ubuntu_common
+    echo " |=> [16] Check Outline Clients are installed or not. => 16"
+    echo " |=> [17] Install Outline Manager Client. => 17 ........... (I1)"
+    echo " |=> [18] Install Outline Client. => 18 ................... (I2)"
+    echo " |=> [19] Install Outline Clients. => 19 .................. (I12)"
+    echo " |=> [20] Update Outline Manager Client. => 20 ............ (U1)"
+    echo " |=> [21] Update Outline Client. => 21 .................... (U2)"
+    echo " |=> [22] Update Outline Clients. => 22 ................... (U12)"
+    echo " |=> [23] Remove all Outline Manager Client. => 23 ........ (R1)"
+    echo " |=> [24] Remove all Outline Client. => 24 ................ (R2)"
+    echo " |=> [25] Remove all Outline Clients. => 25 ............... (R12)"
+    echo " |=> [26] One-click install Docker CE and Outline Server. => 26"
+    echo " |=> [27] One-click install Outline Server and Outline Clients . => 27"
+    echo " |=> [28] One-click install all. => 28"
+    echo " +=> [00] Exit the script. => 00"
+    read -p "< ${read_echo_notice} Please enter the number (00-28) to continue: " num
+}
 
 # Options only support Ubuntu Server
 
