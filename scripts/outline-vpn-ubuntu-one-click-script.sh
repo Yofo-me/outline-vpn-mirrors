@@ -166,6 +166,15 @@ update_docker_ce() {
 }
 
 # Check Linux operating system release
+check_sys_release() {
+    sys_release=$(cat /etc/os-release | awk '$1=="ID=ubuntu" {print $1}' | cut -b 4-9)
+    if [ "${sys_release}" == "ubuntu" ]; then
+        echo -e "> ${Okay} Your Linux release is Ubuntu ${ubuntu_version}. It's okay, Done."
+    else
+        echo -e "> ${Error} This script is only supported on Ubuntu Linux, please reinstall an Ubuntu Linux operating system and try again."
+        exit_information
+    fi
+}
 
 # Check CPU physical architecture
 
