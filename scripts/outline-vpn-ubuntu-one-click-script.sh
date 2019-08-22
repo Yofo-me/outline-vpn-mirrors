@@ -555,6 +555,16 @@ remove_all_outline_client() {
 }
 
 # Topic information
+topic_information() {
+    echo "+=========================================================================+"
+    echo "| One-click Automated Install Docker CE and Outline VPN Script For Ubuntu |"
+    echo "+=========================================================================+"
+    echo "| Author: Seingshin Lee                                                   |"
+    echo "| E-mail: <seingshinlee@gmail.com>                                        |"
+    echo "| Website: https://seingshinlee.com                                       |"
+    echo "| Project Github: https://seingshinlee.com/outline-vpn-mirrors            |"
+    echo "+=========================================================================+"
+}
 
 # Common options for Ubuntu Linux Desktop and Server
 
