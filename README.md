@@ -50,13 +50,13 @@ Outline makes it easy for news organizations to set up a corporate virtual priva
 
 Outline is completely open source and was audited by [Radically Open Security](https://radicallyopensecurity.com) ([2017](https://s3.amazonaws.com/outline-vpn/static_downloads/ros-report.pdf)) and [Cure53](https://cure53.de) ([2018](https://s3.amazonaws.com/outline-vpn/static_downloads/cure53-report.pdf)).
 
-#### 🔐Strong privacy and security
+#### 🏆Strong privacy and security
 
 Outline gives you control over your privacy by letting you operate your own server and Outline never logs your web traffic. Strong encryption helps keep your communications private.
 
 Outline servers automatically update with the latest security settings, so you don't have to worry about keeping software up-to-date.
 
-#### 🛠Built for news organizations
+#### 🌟Built for news organizations
 
 Outline is easy to set up and manage. Organizations can set up their own server in just a few minutes—no tech savvy required.
 
@@ -76,9 +76,9 @@ Outline is powered by [Shadowsocks](https://shadowsocks.org) and is still an ear
 
 :octocat:[GitHub](https://github.com/Jigsaw-Code/?q=outline)
 
-🧲[Terms of Service](https://s3.amazonaws.com/outline-vpn/static_downloads/Outline-Terms-of-Service.html)
+⛔️[Terms of Service](https://s3.amazonaws.com/outline-vpn/static_downloads/Outline-Terms-of-Service.html)
 
-[🧬Data Collection Policy](https://support.getoutline.org/s/article/Data-collection)
+🔰[Data Collection Policy](https://support.getoutline.org/s/article/Data-collection)
 
 [⚠️Privacy Policy](https://www.google.com/policies/privacy)
 
