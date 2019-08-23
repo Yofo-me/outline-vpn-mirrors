@@ -74,7 +74,7 @@ Outline is powered by [Shadowsocks](https://shadowsocks.org) and is still an ear
 
 💬[Help Center](https://support.getoutline.org)
 
-:octocat:[GitHub](https://github.com/Jigsaw-Code/?q=outline)
+:octocat: [GitHub](https://github.com/Jigsaw-Code/?q=outline)
 
 ⛔️[Terms of Service](https://s3.amazonaws.com/outline-vpn/static_downloads/Outline-Terms-of-Service.html)
 

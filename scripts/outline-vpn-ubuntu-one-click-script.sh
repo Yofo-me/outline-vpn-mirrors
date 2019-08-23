@@ -24,7 +24,7 @@
 # Usage:
 #     shell> sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/master/scripts/outline-vpn-ubuntu-one-click-script.sh)"
 # OS restrictions:
-#     Only Ubuntu Linux 19.04, 18.04 LTS or 16.04 LTS can be supported!
+#     Only Ubuntu Linux 19.04, 18.10, 18.04 LTS or 16.04 LTS can be supported!
 
 ubuntu_version=$(lsb_release --release | cut -f 2)
 ubuntu_version_prefix=$(echo ${ubuntu_version} | cut -c "1,2")
