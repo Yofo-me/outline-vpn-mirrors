@@ -17,7 +17,7 @@
   - [#3 Get Outline Client](#3-get-outline-client)
     - [Description](#description-1)
     - [Download](#download-1)
-  - [#4 How to install Outline On Ubuntu Server 19.04 and Ubuntu Desktop 19.04?](#4-how-to-install-outline-on-ubuntu-server-1904-and-ubuntu-desktop-1904)
+  - [#4 How to install Outline VPN On Ubuntu Server 19.04 and Ubuntu Desktop 19.04?](#4-how-to-install-outline-vpn-on-ubuntu-server-1904-and-ubuntu-desktop-1904)
     - [Prerequisites](#prerequisites)
     - [Ubuntu Server](#ubuntu-server)
       - [Step1 - Installing Docker CE Environment on an Ubuntu Server](#step1---installing-docker-ce-environment-on-an-ubuntu-server)
@@ -27,11 +27,11 @@
       - [Step2 Create specified directories](#step2-create-specified-directories)
       - [Step3 Grant permissions and move locations](#step3-grant-permissions-and-move-locations)
       - [Step4 Touch and edit files for desktop launchers](#step4-touch-and-edit-files-for-desktop-launchers)
-      - [Step5 Move the main directory `Outline` to `/opt`](#step5-move-the-main-directory-outline-to-opt)
+      - [Step5 Move the main directory `outline` to `/opt`](#step5-move-the-main-directory-outline-to-opt)
       - [Step6 Create soft links](#step6-create-soft-links)
       - [Step7 Set startup application preferences](#step7-set-startup-application-preferences)
    - [#5 One-click Shell Script](#5-one-click-shell-script)
-   - [#6Keywords](#6-keywords)
+   - [#6 Keywords](#6-keywords)
 
 ## #1 Introduction
 
@@ -54,7 +54,7 @@ Outline is completely open source and was audited by [Radically Open Security](h
 
 Outline gives you control over your privacy by letting you operate your own server and Outline never logs your web traffic. Strong encryption helps keep your communications private.
 
-Outline servers automatically update with the latest security settings, so you don’t have to worry about keeping software up-to-date.
+Outline servers automatically update with the latest security settings, so you don't have to worry about keeping software up-to-date.
 
 #### 🛠Built for news organizations
 
@@ -114,19 +114,19 @@ The client's user interface is implemented in [Polymer](https://www.polymer-proj
 |:---:|:---:|
 |**Windows 7.0+**|[<img src="./statics/pngs/windows.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.exe)|
 |**Most of Linux Releases**|[​<img src="./statics/pngs/linux.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.AppImage)|
-|**macOS 10.11+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356178125)|
+|**macOS 10.11+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/cn/app/outline-app/id1356178125)|
 |**iOS 9.0+**|[<img src="./statics/pngs/appstore.png" width="200" height="50">](https://apps.apple.com/us/app/outline-app/id1356177741)|
 |**Android 5.0+**|[​<img src="./statics/pngs/android.png" width="200" height="50">](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/Outline.apk)**or**[<img src="./statics/pngs/googleplay.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
 |**Chrome OS 64.0+**|[<img src="./statics/pngs/chromeos.png" width="200" height="50">](https://play.google.com/store/apps/details?id=org.outline.android.client)|
 
-## #4 How to install Outline On Ubuntu Server 19.04 and Ubuntu Desktop 19.04?
+## #4 How to install Outline VPN On Ubuntu Server 19.04 and Ubuntu Desktop 19.04?
 
 ### Prerequisites
 
 + **Version**: Ubuntu Server 16.04 LTS, Ubuntu Desktop 16.04 LTS, Ubuntu Server 18.04 LTS, Ubuntu Desktop 18.04 LTS, Ubuntu Server 18.10, Ubuntu Desktop 18.10, Ubuntu Server 19.04 or Ubuntu Desktop 19.04
 + **Linux Kernel Version**: >= v3.10
-+ **Architecture**: AMD or ARM
-+ **Number of Bit**: 64-bit
++ **Architecture**: x86_64 or ARM
++ **Number of Bit**: 64-Bit
 + **Security**: Lastest version or Older version, still supported
 + **User**: A non-root user
 
@@ -134,7 +134,7 @@ According to partial [Table of Ubuntu versions](https://en.wikipedia.org/wiki/Ub
 
 <img src="./statics/ubuntu-versions-supported.png" align="center">
 
-By default, the above versions of the 64-bit Ubuntu operating system meets these requirements.
+By default, the above versions of the 64-Bit Ubuntu operating system meets these requirements.
 
 ### Ubuntu Server
 
@@ -161,9 +161,9 @@ Then add the GPG key for the official Docker repository to your system:
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
-Add the Docker repository to APT sources:
+Add the Docker repository to APT sources and assume x86_64 architecture:
 
-+ If Ubuntu Server 19.04 or Ubuntu Desktop 19.04.
++ If Ubuntu Server 19.04, Ubuntu Desktop 19.04 or higher.
 
 ```bash
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge test"
@@ -252,7 +252,7 @@ $ sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outlin
 ```
 You will see lots of output from the script: first, it checks for the necessary programs (Docker), creates secret keys, and then downloads and starts two Docker containers: a shadowbox server and a watchtower server to update shadowbox as needed.
 
-When the Outline VPN server installation script finishes, you’ll see some output similar to the following:
+When the Outline VPN server installation script finishes, you'll see some output similar to the following:
 
 ```bash
 > Verifying that Docker is installed .......... OK
@@ -266,8 +266,7 @@ When the Outline VPN server installation script finishes, you’ll see some outp
 > Waiting for Outline server to be healthy .... OK
 > Creating first user ......................... OK
 > Adding API URL to config .................... OK
-> Checking host firewall ...................... BLOCKED
-OK
+> Checking host firewall ...................... OK
 
 CONGRATULATIONS! Your Outline server is up and running.
 
@@ -285,7 +284,7 @@ Make sure to open the following ports on your firewall, router or cloud provider
 - Access key port TCP_AND_UDP_PORT_EXAMPLE, for TCP and UDP
 ```
 
-Keep that information safe, as you’ll need it in the other steps. For now, rejoice: You have successfully installed an Outline VPN server!
+Keep that information safe, as you'll need it in the other steps. For now, rejoice: You have successfully installed an Outline VPN server!
 
 ### Ubuntu Desktop
 
@@ -301,7 +300,7 @@ $ sudo wget https://raw.githubusercontent.com/seingshinlee/outline-vpn-mirrors/m
 
 Recursively, create the specified directories:
 ```bash
-$ sudo mkdir -p Outline/{outline-manager,outline}
+$ sudo mkdir -p outline/{outline-manager-client,outline-client}
 ```
 #### Step3 Grant permissions and move locations
 
@@ -311,55 +310,53 @@ $ sudo chmod a+x *.AppImage
 ```
 Move the two programs to the two directories you just created: 
 ```bash
-$ sudo mv Outline-Manager.AppImage Outline/outline-manager && sudo mv Outline-Client.AppImage Outline/outline
+$ sudo mv Outline-Manager.AppImage outline/outline-manager-client && sudo mv Outline-Client.AppImage outline/outline-client
 ```
 Then, move the two icons to the same two directories you just created: 
 ```bash
-$ sudo mv outline-manager.png Outline/outline-manager && sudo mv outline.png Outline/outline
+$ sudo mv outline-manager.png outline/outline-manager-client && sudo mv outline.png outline/outline-client
 ```
 #### Step4 Touch and edit files for desktop launchers
 
 For Outline Manager:
 
 ```bash
-$ sudo cat > Outline/outline-manager/outline-manager.desktop << EOF
+$ sudo cat >$(pwd)/outline-manager-client/outline-manager.desktop <<-EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Outline Manager
-Name[zh_CN]=大纲管理器
 GenericName=Outline VPN - Outline Manager Client
 Comment=The Outline Manager application creates and manages Outline servers, powered by Shadowsocks.
-Exec=/opt/Outline/outline-manager/Outline-Manager.AppImage %f
-Icon=/opt/Outline/outline-manager/outline-manager-client.png
+Exec=/opt/outline/outline-manager-client/Outline-Manager.AppImage %f
+Icon=/opt/outline/outline-manager-client/outline-manager-client.png
 Terminal=false
 Type=Application
-Categories=Internet;
+Categories=Internet
 StartupNotify=true
 EOF
 ```
 
 For Outline:
 ```bash
-$ sudo cat > Outline/outline/outline.desktop << EOF
+$ sudo cat >$(pwd)/outline/outline.desktop <<-EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Outline
-Name[zh_CN]=大纲
 GenericName=Outline VPN - Outline Client
 Comment=The Outline Client is a cross-platform VPN or proxy client for Windows, macOS, iOS, Android, and Chrome OS.
-Exec=/opt/Outline/outline/Outline-Client.AppImage %f
-Icon=/opt/Outline/outline/outline-client.png
+Exec=/opt/outline/outline-client/Outline-Client.AppImage %f
+Icon=/opt/outline/outline-client/outline-client.png
 Terminal=false
 Type=Application
-Categories=Internet;
+Categories=Internet
 StartupNotify=true
 EOF
 ```
 
-#### Step5 Move the main directory `Outline` to `/opt`
+#### Step5 Move the main directory `outline` to `/opt`
 
 ```bash
-$ sudo mv Outline /opt
+$ sudo mv outline/ /opt
 ```
 
 #### Step6 Create soft links
@@ -367,13 +364,13 @@ $ sudo mv Outline /opt
 For `outline-manager.desktop`:
 
 ```bash
-$ sudo ln -s /opt/Outline/outline-manager/outline-manager.desktop /usr/share/applications/outline-manager.desktop
+$ sudo ln -s /opt/outline/outline-manager-client/outline-manager.desktop /usr/share/applications/outline-manager.desktop
 ```
 
 For `outline.desktop`:
 
 ```bash
-$ sudo ln -s /opt/Outline/outline/outline.desktop /usr/share/applications/outline.desktop
+$ sudo ln -s /opt/outline/outline-client/outline.desktop /usr/share/applications/outline.desktop
 ```
 
 #### Step7 Set startup application preferences
@@ -384,9 +381,9 @@ Last, run the command and pop-up the window about `Startup application preferenc
 $ gnome-session-properties
 ```
 
-Choose `Outline-Manager.AppImage`, click `Edit`, modify the `command` to `/opt/Outline/outline-manager/Outline-Client.AppImage`, and finally save it. 
+Choose `Outline-Manager.AppImage`, click `Edit`, modify the `command` to `/opt/outline/outline-manager-client/Outline-Client.AppImage`, and finally save it. 
 
-The same reason, you can choose `Outline-Client.AppImage`, click `Edit`, modify the `command` to `/opt/Outline/outline/Outline-Client.AppImage`, and finally save it.
+The same reason, you can choose `Outline-Client.AppImage`, click `Edit`, modify the `command` to `/opt/outline/outline-client/Outline-Client.AppImage`, and finally save it.
 
 At this point, you completely installed and configured all. Now, Let us reboot computer and try it!
 
