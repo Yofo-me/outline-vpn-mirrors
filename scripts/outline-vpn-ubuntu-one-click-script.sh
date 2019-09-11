@@ -185,7 +185,7 @@ check_phy_arch() {
         phy_arch=arm64
     else
         echo -e "> ${Notice} Physical architecture is not supported, please replace a new CPU architecture and try again."
-        echo -e "> ${Notice} Only x86_64, arm64 and arm64 are supported!"
+        echo -e "> ${Notice} Only x86_64, amd64 and arm64 are supported!"
         echo -e "> ${Notice} Or you can go to the official website to find out more CPU architectures..."
         echo -e "> ${Notice} Click the right mouse button to open the link: https://docs.docker.com/install/linux/docker-ce/ubuntu"
         exit_information
