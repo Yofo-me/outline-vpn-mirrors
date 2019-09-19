@@ -26,11 +26,6 @@
 # OS restrictions:
 #     Only Ubuntu Linux 19.04, 18.10, 18.04 LTS or 16.04 LTS can be supported!
 
-ubuntu_version=$(lsb_release --release | cut -f 2)
-ubuntu_version_prefix=$(echo ${ubuntu_version} | cut -c "1,2")
-ubuntu_version_echo="> ${Okay} Your Ubuntu Linux version is ${ubuntu_version}, it's ok and continue... Done."
-Jigsaw-Code_pre_url="https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master"
-
 # Initialze ANSI colors
 initializeANSI() {
     prefix="\033"
@@ -50,27 +45,37 @@ read_echo_okay=$(echo -e "${Okay}")
 read_echo_notice=$(echo -e "${Notice}")
 read_echo_error=$(echo -e "${Error}")
 
+ubuntu_version=$(lsb_release --release | cut -f 2)
+ubuntu_version_prefix=$(echo ${ubuntu_version} | cut -c "1,2")
+ubuntu_version_echo="> ${Okay} Your Ubuntu Linux version is ${ubuntu_version}, it's ok and continue... Done."
+Jigsaw_Code_pre_url="https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master"
+
 # Check if Docker CE is installed or not
 check_docker_ce_is_installed() {
     if [ -f "/usr/bin/docker" ]; then
         echo -e "> ${Okay} Docker CE service is installed... Done."
     else
-        echo -e "> ${Error} Docker CE service isn't installed... Done."
+        echo -e "> ${Notice} Docker CE service isn't installed... Done."
     fi
 }
 
-# Checkt Docker CE service status
+# Check Docker CE service status
 check_docker_ce_service_status() {
     if [[ "$(systemctl status docker.service --no-pager | awk '/Active/ {print $2,$3}')" == "active (running)" ]]; then
         sudo systemctl status docker.service --no-pager
-        echo "> ${Okay} Well! Docker CE service is enable... Done."
+        echo -e "> ${Okay} Well! Docker CE service is enable... Done."
     else
-        echo -e "> ${Notice} Sorry! Docker CE service is disable... Done. (+)"
-        echo -e "> ${Okay} Continuing... Done."
-        sudo systemctl enable docker.service
-        echo -e "> ${Okay} Docker CE service has been set to boot from boot... Done."
-        sudo systemctl start docker.service
-        echo -e "> ${Okay} Docker CE service is starting... Done."
+        if [ -f "/usr/bin/docker" ]; then
+            echo -e "> ${Notice} Sorry! Docker CE service is disable... Done. (+)"
+            echo -e "> ${Okay} Continuing... Done."
+            sudo systemctl enable docker.service
+            echo -e "> ${Okay} Docker CE service has been set to boot from boot... Done."
+            sudo systemctl start docker.service
+            echo -e "> ${Okay} Docker CE service is starting... Done."
+        else
+            echo -e "> ${Notice} Docker CE service isn't installed... Done."
+            continue_start_menu_or_not
+        fi
         sleep 2s
         check_docker_ce_service_status
     fi
@@ -92,6 +97,7 @@ add_docker_ce_apt_repository() {
             stable"
             ;;
         *)
+            exit_information
             ;;
     esac
 
@@ -302,15 +308,19 @@ check_ubuntu_version() {
     case "${ubuntu_version}" in
         19.04)
             echo -e ${ubuntu_version_echo}
+            continue_start_menu_or_not
             ;;
         18.10)
             echo -e ${ubuntu_version_echo}
+            continue_start_menu_or_not
             ;;
         18.04)
             echo -e ${ubuntu_version_echo}
+            continue_start_menu_or_not
             ;;
         16.04)
             echo -e ${ubuntu_version_echo}
+            continue_start_menu_or_not
             ;;
         *)
             if [ "${count_03}" == 1 ]; then
@@ -421,9 +431,9 @@ check_outline_clients_are_enabled() {
 install_outline_manager_client() {
     cur_dir=$(pwd)
     if [ ! -f "Outline-Manager.AppImage" ]; then
-        sudo wget ${Jigsaw-Code_pre_url}/manager/stable/Outline-Manager.AppImage
+        sudo wget ${Jigsaw_Code_pre_url}/manager/stable/Outline-Manager.AppImage
     else
-        sudo wget -N -c ${Jigsaw-Code_pre_url}/manager/stable/Outline-Manager.AppImage
+        sudo wget -N -c ${Jigsaw_Code_pre_url}/manager/stable/Outline-Manager.AppImage
     fi
 
     sudo chmod a+x Outline-Manager.AppImage
@@ -461,9 +471,9 @@ EOF
 install_outline_client() {
     cur_dir=$(pwd)
     if [ ! -f "Outline-Client.AppImage" ]; then
-        sudo wget ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+        sudo wget ${Jigsaw_Code_pre_url}/client/stable/Outline-Client.AppImage
     else
-        sudo wget -N -c ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+        sudo wget -N -c ${Jigsaw_Code_pre_url}/client/stable/Outline-Client.AppImage
     fi
 
     sudo chmod a+x Outline-Client.AppImage
@@ -502,9 +512,9 @@ EOF
 update_outline_manager_client() {
     sudo kill $(ps -ef | grep "outline-manger" | awk '{print $2}')
     if [ ! -f "Outline-Manager.AppImage" ]; then
-        sudo wget ${Jigsaw-Code_pre_url}/manager/stable/Outline-Manager.AppImage
+        sudo wget ${Jigsaw_Code_pre_url}/manager/stable/Outline-Manager.AppImage
     else
-        sudo wget -N -c ${Jigsaw-Code_pre_url}/manager/stable/Outline-Manager.AppImage
+        sudo wget -N -c ${Jigsaw_Code_pre_url}/manager/stable/Outline-Manager.AppImage
     fi
 
     sudo chmod a+x Outline-Manager.AppImage
@@ -516,9 +526,9 @@ update_outline_manager_client() {
 update_outline_client() {
     sudo kill $(ps -ef | grep "outline-client" | awk '{print $2}')
     if [ ! -f "Outline-Client.AppImage" ]; then
-        sudo wget ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+        sudo wget ${Jigsaw_Code_pre_url}/client/stable/Outline-Client.AppImage
     else
-        sudo wget -N -c ${Jigsaw-Code_pre_url}/client/stable/Outline-Client.AppImage
+        sudo wget -N -c ${Jigsaw_Code_pre_url}/client/stable/Outline-Client.AppImage
     fi
 
     sudo chmod a+x Outline-Client.AppImage
@@ -683,7 +693,7 @@ option_11_or_12() {
             echo -e "> ${Okay} The current version is higher version."
             if [ "${option_11_or_12}" == "11" ]; then
                 echo -e "> ${Okay} No need to install Docker CE service!"
-            else [ "${option_11_or_12}" == "12" ]; then
+            elif [ "${option_11_or_12}" == "12" ]; then
                 echo -e "> ${Okay} No need to update Docker CE service!"
             fi
             read -p "< ${read_echo_notice} Also, you can update to the latest version, please enter [y/N] to continue: " param
