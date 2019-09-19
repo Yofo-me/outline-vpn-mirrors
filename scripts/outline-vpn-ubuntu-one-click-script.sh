@@ -83,6 +83,7 @@ check_docker_ce_service_status() {
 
 # Add an official Docker CE apt-repository software source
 add_docker_ce_apt_repository() {
+    check_phy_arch
     case "${ubuntu_version}" in
         19.04)
             sudo add-apt-repository \
@@ -103,7 +104,7 @@ add_docker_ce_apt_repository() {
 
     apt-cache policy docker-ce
 
-    if [[ $(apt-cache policy docker-ce | sed -n '3p' | awk -F "[~-]" '{print $4}') != "ubuntu" ]]; then
+    if [[ $(apt-cache policy docker-ce | sed -n '3p' | awk -F "[~-]" '{print $4}') == "ubuntu" ]]; then
         echo -e "> ${Okay} Continuing... Done."
     else
         echo -e "> ${Notice} Re-add the official apt-repository software source of Docker CE... Done."
