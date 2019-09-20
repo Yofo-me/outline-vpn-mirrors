@@ -354,8 +354,7 @@ check_outline_server_is_installed() {
     if [ -d "/opt/outline/persisted-state/outline-ss-server" ]; then
         echo -e "> ${Okay} Outline Server is installed... Done."
     else
-        echo -e "> ${Error} Outline Server isn't installed... Done."
-        exit_information
+        echo -e "> ${Notice} Outline Server isn't installed... Done."
     fi
 }
 
