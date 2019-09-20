@@ -61,29 +61,24 @@ check_docker_ce_is_installed() {
 
 # Check Docker CE service status
 check_docker_ce_service_status() {
-    if [[ "$(systemctl status docker.service --no-pager | awk '/Active/ {print $2,$3}')" == "active (running)" ]]; then
+    if [[ "$(service --status-all | grep "docker" | grep -c "+")" == 1 ]]; then
         sudo systemctl status docker.service --no-pager
         echo -e "> ${Okay} Well! Docker CE service is enable... Done."
+    elif [[ "$(service --status-all | grep "docker" | grep -c "-")" == 1 ]]; then
+        echo -e "> ${Notice} Sorry! Docker CE service is disable... Done. (+)"
+        echo -e "> ${Okay} Continuing... Done."
+        sudo systemctl enable docker.service
+        echo -e "> ${Okay} Docker CE service has been set to boot from boot... Done."
+        sudo systemctl start docker.service
+        echo -e "> ${Okay} Docker CE service is starting... Done."
     else
-        if [ -f "/usr/bin/docker" ]; then
-            echo -e "> ${Notice} Sorry! Docker CE service is disable... Done. (+)"
-            echo -e "> ${Okay} Continuing... Done."
-            sudo systemctl enable docker.service
-            echo -e "> ${Okay} Docker CE service has been set to boot from boot... Done."
-            sudo systemctl start docker.service
-            echo -e "> ${Okay} Docker CE service is starting... Done."
-        else
-            echo -e "> ${Notice} Docker CE service isn't installed... Done."
-            continue_start_menu_or_not
-        fi
-        sleep 2s
-        check_docker_ce_service_status
+        echo -e "> ${Notice} Docker CE service isn't installed... Done."
+        continue_start_menu_or_not
     fi
 }
 
 # Add an official Docker CE apt-repository software source
 add_docker_ce_apt_repository() {
-    check_phy_arch
     case "${ubuntu_version}" in
         19.04)
             sudo add-apt-repository \
@@ -216,9 +211,9 @@ check_bit() {
 
 # Check memory total of operating system
 check_memory_total() {
-    memory_total=$(($(grep MemTotal /proc/meminfo | awk '{print $2}') / 1024))
+    memory_total=$[$(grep MemTotal /proc/meminfo | awk '{print $2}') / 1024 * 11 / 10]
     if [ "${memory_total}" -ge 512 ]; then
-        echo -e "> ${Okay} Your machine memory is ${memory_total}MB, it's okay, continuing... Done."
+        echo -e "> ${Okay} Your machine memory is $[memory_total * 10 / 11]MB, it's okay, continuing... Done."
     else
         echo -e "> ${Error} Machine memory is less than 512MB, please adjust to the memory size and try again."
         exit_information
@@ -309,19 +304,15 @@ check_ubuntu_version() {
     case "${ubuntu_version}" in
         19.04)
             echo -e ${ubuntu_version_echo}
-            continue_start_menu_or_not
             ;;
         18.10)
             echo -e ${ubuntu_version_echo}
-            continue_start_menu_or_not
             ;;
         18.04)
             echo -e ${ubuntu_version_echo}
-            continue_start_menu_or_not
             ;;
         16.04)
             echo -e ${ubuntu_version_echo}
-            continue_start_menu_or_not
             ;;
         *)
             if [ "${count_03}" == 1 ]; then
@@ -330,21 +321,21 @@ check_ubuntu_version() {
             else
                 read -p "< ${read_echo_notice} Do you certainly upgrade to higher Ubuntu Linux version now? Press enter [y/N]: " param
             fi
-            ;;
-    esac
 
-    case ${param} in
-        Y|y|[Yy][Ee][Ss])
-            check_ssh_server_alive_status
-            upgrade_ubuntu_version
-            ;;
-        N|n|[Nn][Oo])
-            exit_information
-            ;;
-        *)
-            echo -e "> ${Error} Invalid input, please input a legal operation and continue... Done."
-            count_03=$[${count_03}+1]
-            check_ubuntu_version
+            case ${param} in
+                Y|y|[Yy][Ee][Ss])
+                    check_ssh_server_alive_status
+                    upgrade_ubuntu_version
+                    ;;
+                N|n|[Nn][Oo])
+                    exit_information
+                    ;;
+                *)
+                    echo -e "> ${Error} Invalid input, please input a legal operation and continue... Done."
+                    count_03=$[${count_03}+1]
+                    check_ubuntu_version
+                    ;;
+            esac
             ;;
     esac
 }
@@ -688,7 +679,7 @@ option_11_or_12=
 option_11_or_12() {
     param=
     check_docker_ce_is_installed
-    if [ -f "/usr/bin/docker" ] && [ "$(docker --version | awk -F "[ .]" '{print $3}')" -ge 19 ]; then
+    if [ -f "/usr/bin/docker" ] && [[ "$(docker --version | awk -F "[ .]" '{print $3}')" -ge 19 ]]; then
         if [ "${count_06}" == 1 ]; then
             echo -e "> ${Okay} The current version is higher version."
             if [ "${option_11_or_12}" == "11" ]; then
@@ -777,7 +768,11 @@ start_menu() {
     topic_information
 
     if [ "${count_07}" == 1 ]; then
-        check_sys_release
+        phy_arch=$(arch)
+        check_phy_arch
+        check_bit
+        check_memory_total
+        check_ubuntu_version
     fi
 
     echo "[.]"
@@ -971,8 +966,10 @@ start_menu() {
         *)
             count_07=$[${count_07}+1]
             if [ "$(ps -e | grep -c X)" == 1 ] && [ "$(dpkg -l ubuntu-desktop | grep -c "desktop")" == 1 ]; then
+                clear
                 echo -e "< ${read_echo_error} An invalid number, please re-enter a legal and right number from (00-28)! Done. "
             else
+                clear
                 echo -e "< ${read_echo_error} An invalid number, please re-enter a legal and right number from (00-16)! Done. "
             fi
             sleep 2s
