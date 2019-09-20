@@ -371,7 +371,7 @@ install_or_update_outline_server() {
     "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)" -y \
     | tee $HOME/.install_or_update_outline_server.log
 
-    cat $HOME/.install_or_update_outline_server.log | awk '/apiUrl/ {print $0}' | sudo tee /opt/outline/accses.txt.copy
+    cat $HOME/.install_or_update_outline_server.log | awk '/apiUrl/ {print $0}' | sudo tee /opt/outline/access.txt.copy
 
     if [ "${count_04}" == 1 ]; then
         echo -e "> ${Okay} Install Outline Server successfully... Done."
